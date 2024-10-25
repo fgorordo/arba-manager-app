@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import DBLogo from "@/assets/LOGO DON BENITO.jpeg";
+import { Link, NavLink } from 'react-router-dom';
 
 export function AppSidebar() {
     return (
@@ -37,6 +38,9 @@ export function AppSidebar() {
                         </SidebarMenuButton>
                         <SidebarMenuButton>
                             Ver facturas
+                        </SidebarMenuButton>
+                        <SidebarMenuButton>
+                            <NavLink to={"/arba/lotes"}>Lotes</NavLink>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarGroup>

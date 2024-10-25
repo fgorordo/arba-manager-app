@@ -16,14 +16,22 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 
 const formSchema = z.object({
-  platId: z.string(),
-  type: z.string(),
-  area: z.number(),
-  builtArea: z.number(),
-  taxBase: z.number(),
-  customName: z.string(),
-  certificateNumber: z.string(),
-  fullName: z.string(),
+  nombreParcela: z.string(),
+  nombrePropietario: z.string(),
+  numeroPartida: z.string(),
+  baseImponible: z.number(),
+  tipoPlanta: z.string(),
+  superficie: z.number(),
+  superficieEdificada: z.number(),
+  circ: z.string(),
+  seccion: z.string(),
+  chacra: z.string(),
+  quinta: z.string(),
+  manzana: z.string(),
+  fraccion: z.string(),
+  parcela: z.string(),
+  subParcela: z.string(),
+  comentarios: z.string(),
 })
 
 export const CreateNewPlatForm = () => {
@@ -31,14 +39,22 @@ export const CreateNewPlatForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "",
-      customName: "",
-      area: 0,
-      builtArea: 0,
-      platId: "",
-      taxBase: 0,
-      type: "",
-      certificateNumber: "",
+      nombreParcela: "",
+      nombrePropietario: "",
+      numeroPartida: "",
+      baseImponible: 0,
+      tipoPlanta: "",
+      superficie: 0,
+      superficieEdificada: 0,
+      circ: "",
+      seccion: "",
+      chacra: "",
+      quinta: "",
+      manzana: "",
+      fraccion: "",
+      parcela: "",
+      subParcela: "",
+      comentarios: "",
     }
   });
 
@@ -57,7 +73,7 @@ export const CreateNewPlatForm = () => {
           <div className='flex gap-5'>
             <FormField
               control={form.control}
-              name="customName"
+              name="nombreParcela"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nombre de parcela</FormLabel>
@@ -74,7 +90,7 @@ export const CreateNewPlatForm = () => {
 
             <FormField
               control={form.control}
-              name="fullName"
+              name="nombrePropietario"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Nombre del propietario</FormLabel>
@@ -91,7 +107,7 @@ export const CreateNewPlatForm = () => {
 
             <FormField
               control={form.control}
-              name="certificateNumber"
+              name="numeroPartida"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Partida N°</FormLabel>
@@ -116,7 +132,7 @@ export const CreateNewPlatForm = () => {
           <div className='grid grid-cols-4 gap-5'>
             <FormField
               control={form.control}
-              name="taxBase"
+              name="baseImponible"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Base imponible</FormLabel>
@@ -130,7 +146,7 @@ export const CreateNewPlatForm = () => {
 
             <FormField
               control={form.control}
-              name="type"
+              name="tipoPlanta"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tipo de planta</FormLabel>
@@ -144,7 +160,7 @@ export const CreateNewPlatForm = () => {
 
             <FormField
               control={form.control}
-              name="area"
+              name="superficie"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Superficie del terreno</FormLabel>
@@ -158,7 +174,7 @@ export const CreateNewPlatForm = () => {
 
             <FormField
               control={form.control}
-              name="builtArea"
+              name="superficieEdificada"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Superficie edificada</FormLabel>
@@ -173,7 +189,7 @@ export const CreateNewPlatForm = () => {
             <div className='col-span-4 grid grid-cols-4 gap-5'>
               <FormField
                 control={form.control}
-                name="area"
+                name="circ"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Circ.</FormLabel>
@@ -187,7 +203,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="seccion"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Seccion</FormLabel>
@@ -201,7 +217,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="chacra"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Chacra</FormLabel>
@@ -215,7 +231,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="quinta"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Quinta</FormLabel>
@@ -229,7 +245,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="manzana"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Manzana</FormLabel>
@@ -243,7 +259,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="fraccion"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Fraccion</FormLabel>
@@ -257,7 +273,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="parcela"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Parcela</FormLabel>
@@ -271,7 +287,7 @@ export const CreateNewPlatForm = () => {
 
               <FormField
                 control={form.control}
-                name="area"
+                name="subParcela"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Sub parcela</FormLabel>
@@ -290,7 +306,7 @@ export const CreateNewPlatForm = () => {
 
         <FormField
           control={form.control}
-          name="fullName"
+          name="comentarios"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Comentarios adicionales</FormLabel>
