@@ -1,2 +1,2 @@
-export * from './ArbaPage';
-export * from './CreateNewPlatPage';
+export * from './LotesPage';
+export * from './CreateLotePage';

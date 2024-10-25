@@ -1,4 +1,4 @@
-import { ArbaPage, CreateNewPlatPage } from '@/arba';
+import { CreateLotePage, LotesPage } from '@/arba';
 import { DashboardLayout } from '@/dashboard';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -15,12 +15,12 @@ export const Router = createBrowserRouter([
                 element: <>Main</>,
             },
             {
-                path: "/arba",
-                element: <ArbaPage />,
+                path: "/arba/lotes",
+                element: <LotesPage/>
             },
             {
-                path: "/arba/lotes",
-                element: <CreateNewPlatPage/>
+                path: "/arba/lotes/crear",
+                element:<CreateLotePage />
             }
         ]
     }

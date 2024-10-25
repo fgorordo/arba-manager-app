@@ -1,0 +1,1 @@
+export * from './lotes-table-data.interface';
