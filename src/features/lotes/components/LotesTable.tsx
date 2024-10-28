@@ -8,23 +8,23 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { ILote } from '../slices/arbaSlice';
-
-interface Props {
-    lotesTableData: ILote[]
-}
+import { useLotesStore } from '../hooks';
+import { useEffect } from 'react';
+import { devData } from '../data';
 
 interface CustomTableRowProps {
     nombre: string;
     parcela: string;
     superficie: number;
     superficieEdificada: number;
-    baseImponible: number;
+    baseImponible: number;    
 }
 
 const CustomTableRow: React.FC<CustomTableRowProps> = ({baseImponible, nombre, parcela, superficie, superficieEdificada}) => {
+    const {startSetActiveLoteId} = useLotesStore();
+
     return (
-        <TableRow onClick={() => alert('Cargando el lote')} className='cursor-pointer'>
+        <TableRow className='cursor-pointer' onClick={() => startSetActiveLoteId(nombre)}>
             <TableCell>{nombre}</TableCell>
             <TableCell>{parcela}</TableCell>
             <TableCell>{superficie}</TableCell>
@@ -34,13 +34,21 @@ const CustomTableRow: React.FC<CustomTableRowProps> = ({baseImponible, nombre, p
     )
 }
 
-export const LotesTable: React.FC<Props> = ({lotesTableData}) => {
+export const LotesTable: React.FC = () => {
+
+    const { lotes } = useLotesStore()
+    const {startLoadingInitialLotesData} = useLotesStore()
+
+    useEffect(() => {
+      startLoadingInitialLotesData(devData)
+    }, [])
+
     return (
-        <Card className='row-span-4 col-span-3'>
+        <Card className='lg:col-span-3'>
             <Table>
-                <TableCaption>
+                <TableCaption className='mb-4'>
                     {
-                        lotesTableData.length === 0
+                        lotes.length === 0
                         ? 'No hay lotes registrados, por favor crea un nuevo lote.'
                         : 'Las unidades de superficie están expresadas en m2.'
                     }
@@ -56,11 +64,11 @@ export const LotesTable: React.FC<Props> = ({lotesTableData}) => {
                 </TableHeader>
                 <TableBody>
                     {
-                        lotesTableData.map(item => (
+                        lotes.map(item => (
                             <CustomTableRow 
                                 baseImponible={item.baseImponible} 
-                                nombre={item.nombreParcela}
-                                parcela={item.parcela!}
+                                nombre={item.nombre}
+                                parcela={item.parcela ? item.parcela : 'No disponible'}
                                 superficie={item.superficie}
                                 superficieEdificada={item.superficieEdificada}
                                 key={item.parcela}

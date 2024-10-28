@@ -31,16 +31,16 @@ export function AppSidebar() {
                 </SidebarHeader>
 
                 <SidebarGroup>
-                    <SidebarGroupLabel>ARBA</SidebarGroupLabel>
+                    <SidebarGroupLabel>ARBA/Lotes</SidebarGroupLabel>
                     <SidebarMenuItem className='list-none'>
-                        <SidebarMenuButton>
-                            Cargar factura
-                        </SidebarMenuButton>
-                        <SidebarMenuButton>
-                            Ver facturas
+                        <SidebarMenuButton asChild>
+                            <NavLink to={"/lotes"}>Lotes y parcelas</NavLink>
                         </SidebarMenuButton>
                         <SidebarMenuButton asChild>
-                            <NavLink to={"/arba/lotes"}>Lotes</NavLink>
+                            <NavLink to={"/arba"}>Facturas ARBA</NavLink>
+                        </SidebarMenuButton>
+                        <SidebarMenuButton asChild>
+                            <NavLink to={"/configurar-lotes"}>Configuración</NavLink>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarGroup>

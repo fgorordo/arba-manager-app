@@ -1,5 +1,5 @@
-import { CreateLotePage, LotesPage } from '@/arba';
 import { DashboardLayout } from '@/dashboard';
+import { ArbaPage, CreateLotePage, LotesPage, SettingsPage } from '@/features/lotes';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const Router = createBrowserRouter([
@@ -11,17 +11,22 @@ export const Router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
             {
-                path: "/dashboard",
-                element: <>Main</>,
+                path: "/lotes",
+                element: <LotesPage />,
             },
             {
-                path: "/arba/lotes",
-                element: <LotesPage/>
+                path: "/lotes/nuevo",
+                element: <CreateLotePage />
             },
             {
-                path: "/arba/lotes/crear",
-                element:<CreateLotePage />
+                path: "/arba",
+                element: <ArbaPage />
+            },
+            {
+                path: "/configurar-lotes",
+                element: <SettingsPage />
             }
+
         ]
     }
 ])

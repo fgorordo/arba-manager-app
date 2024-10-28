@@ -1,11 +1,9 @@
-import { arbaSlice } from '@/arba/slices/arbaSlice'
-import { configureStore } from '@reduxjs/toolkit'
-import { uiSlice } from './slices'
+import { lotesSlice } from '@/features/lotes/slices';
+import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    arba: arbaSlice.reducer,
-    ui: uiSlice.reducer,
+    lotes: lotesSlice.reducer,
   },
 })
 

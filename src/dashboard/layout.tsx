@@ -7,10 +7,12 @@ export const DashboardLayout = () => {
         <SidebarProvider>
             <AppSidebar />
             <main className='w-full'>
-                <div className='bg-red-100 h-14 mb-4'>
-                   Header 
+                <div className='bg-red-100 h-14 flex items-center justify-center'>
+                    This is a header :D
                 </div>
-                <Outlet />
+                <div className='p-2'>
+                    <Outlet />
+                </div>
             </main>
         </SidebarProvider>
     )

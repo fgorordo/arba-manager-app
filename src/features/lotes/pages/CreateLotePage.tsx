@@ -14,13 +14,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useArbaStore } from '../hooks/useArbaStore';
-import { ILote } from '../slices/arbaSlice';
+import { useLotesStore } from '../hooks';
 
 const formSchema = z.object({
-    nombreParcela: z.string({ required_error: 'Debes ingresar un nombre para la parcela.' }),
+    nombre: z.string({ required_error: 'Debes ingresar un nombre para la parcela.' }),
     nombrePropietario: z.string({ required_error: 'Debes ingresar un nombre de propietario.' }),
-    numeroPartida: z.string({ required_error: 'Debes ingresar un número de partida.' }),
+    partida: z.string({ required_error: 'Debes ingresar un número de partida.' }),
     baseImponible: z.coerce.number({ required_error: 'Debes ingresar la base imponible.', invalid_type_error: 'Debes ingresar un valor' }),
     tipoPlanta: z.string({ required_error: 'Debes ingresar un tipo de planta.' }),
     superficie: z.coerce.number({ required_error: 'Debes ingresar un valor de superficie.', message: 'Debes ingresar un número.' }).min(1, { message: 'La superficie no puede ser menor a 1.' }),
@@ -37,16 +36,15 @@ const formSchema = z.object({
 
 
 export const CreateLotePage = () => {
-
-    const { createLote } = useArbaStore();
     const navigate = useNavigate();
+    const { startCreateLote } = useLotesStore()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            nombreParcela: undefined,
+            nombre: undefined,
             nombrePropietario: undefined,
-            numeroPartida: undefined,
+            partida: undefined,
             baseImponible: undefined,
             tipoPlanta: undefined,
             superficie: undefined,
@@ -63,11 +61,11 @@ export const CreateLotePage = () => {
     });
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
-        createLote(values);
-        return navigate("/arba/lotes");
+        startCreateLote(values);
+        return navigate("/lotes");
     }
     return (
-        <Card className='m-4 max-w-3xl mx-auto'>
+        <Card className='m-2 max-w-3xl mx-auto'>
             <CardHeader className='mb-2'>
                 <CardTitle>
                     Crear nueva parcela/lote
@@ -78,14 +76,14 @@ export const CreateLotePage = () => {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-5xl">
 
-                        <div className='mb-5'>
+                        <div className='mb-2'>
                             <h2 className='text-2xl'>Información general</h2>
                             <hr className='mb-2' />
 
-                            <div className='flex gap-5 mt-5'>
+                            <div className='flex gap-2 mt-5 flex-col lg:flex-row'>
                                 <FormField
                                     control={form.control}
-                                    name="nombreParcela"
+                                    name="nombre"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Nombre de parcela</FormLabel>
@@ -119,7 +117,7 @@ export const CreateLotePage = () => {
 
                                 <FormField
                                     control={form.control}
-                                    name="numeroPartida"
+                                    name="partida"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>Partida N°</FormLabel>
@@ -141,7 +139,7 @@ export const CreateLotePage = () => {
                             <h2 className='text-2xl'>Datos del inmueble</h2>
                             <hr className='mb-2' />
 
-                            <div className='grid grid-cols-4 gap-5 mt-5'>
+                            <div className='grid gap-2 grid-cols-1 lg:grid-cols-4'>
                                 <FormField
                                     control={form.control}
                                     name="baseImponible"
@@ -199,7 +197,7 @@ export const CreateLotePage = () => {
                                     )}
                                 />
 
-                                <div className='col-span-4 grid grid-cols-4 gap-5'>
+                                <div className='grid lg:col-span-4 lg:grid-cols-4 gap-2'>
                                     <FormField
                                         control={form.control}
                                         name="circ"
@@ -318,7 +316,7 @@ export const CreateLotePage = () => {
                         </div>
 
                         <div className='flex gap-4 justify-between mt-4'>
-                            <Button asChild variant="outline"><Link to="/arba/lotes">Cancelar</Link></Button>
+                            <Button asChild variant="outline"><Link to="/lotes">Cancelar</Link></Button>
                             <Button type="submit">Continuar</Button>
                         </div>
                     </form>
