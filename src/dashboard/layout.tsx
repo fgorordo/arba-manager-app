@@ -6,13 +6,8 @@ export const DashboardLayout = () => {
     return (
         <SidebarProvider>
             <AppSidebar />
-            <main className='w-full'>
-                <div className='bg-red-100 h-14 flex items-center justify-center'>
-                    This is a header :D
-                </div>
-                <div className='p-2'>
-                    <Outlet />
-                </div>
+            <main className='w-full h-dvh p-2'>
+                <Outlet />
             </main>
         </SidebarProvider>
     )
