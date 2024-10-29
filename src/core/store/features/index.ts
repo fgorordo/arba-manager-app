@@ -1,2 +1,2 @@
-export * from './parcelaSlice';
-export * from './appSlice';
+export * from './parcela-slice';
+export * from './app-slice';

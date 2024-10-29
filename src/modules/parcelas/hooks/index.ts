@@ -1,1 +1,1 @@
-export * from './useParcelaStore';
+export * from './use-parcela-store';
