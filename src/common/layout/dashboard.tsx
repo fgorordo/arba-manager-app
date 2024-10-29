@@ -6,6 +6,7 @@ import { useParcelaStore } from '@/modules/parcelas/hooks';
 import { useEffect } from 'react';
 import { useAppStore } from '../hooks';
 import { ProgressBar } from 'react-loader-spinner';
+import { Toaster } from '../components/ui/toaster';
 
 
 export const DashboardLayout: React.FC = () => {
@@ -41,6 +42,7 @@ export const DashboardLayout: React.FC = () => {
                                 )
                                 : <Outlet />
                         }
+                        <Toaster />
                     </main>
                 </div>
             </SidebarProvider>

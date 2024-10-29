@@ -6,32 +6,44 @@ interface AppInitialState {
     status: AppStatus,
     errorMessage: null | string;
     succededMessage: null | string;
+    disableUserActions: boolean;
 }
 
 const initialState: AppInitialState = {
     status: 'idle',
     errorMessage: null,
     succededMessage: null,
+    disableUserActions: false,
 }
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setAppStatus: (state, {payload}:PayloadAction<AppStatus>) => {
-        state.status = payload
+    setLoadingStatus: (state) => {
+        state.disableUserActions = true;
+        state.status = 'loading';
     },
-    setErrorMessage: (state, {payload}: PayloadAction<string>) => {
-        state.errorMessage = payload;
-    },
-    setSuccededMessage: (state, {payload}: PayloadAction<string>) => {
+
+    setSuccededStatus: (state, {payload}: PayloadAction<string | null>) => {
+        state.disableUserActions = false;
+        state.status = 'succeded';
         state.succededMessage = payload;
     },
-    clearMessages: (state) => {
+
+    setFailedStatus: (state, {payload}: PayloadAction<string | null>) => {
+        state.disableUserActions = false;
+        state.status = 'failed';
+        state.succededMessage = payload;
+    },
+
+    setIdleStatus: (state) => {
+        state.disableUserActions = false;
         state.errorMessage = null;
         state.succededMessage = null;
+        state.status = 'idle';
     }
   }
 });
 
-export const { setAppStatus, setErrorMessage, setSuccededMessage, clearMessages } = appSlice.actions;
+export const { setLoadingStatus, setSuccededStatus,  setFailedStatus, setIdleStatus } = appSlice.actions;

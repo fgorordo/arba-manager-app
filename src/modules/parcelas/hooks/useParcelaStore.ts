@@ -4,24 +4,24 @@ import { setInitialState } from '@/core/store/features';
 
 
 export const useParcelaStore = () => {
-    const { handleAppStatus } = useAppStore();
+    const { handleSetFailedStatus, handleSetIdleStatus,handleSetLoadingStatus, handleSetSuccededStatus } = useAppStore();
     const parcelas = useAppSelector(state => state.parcelas)
     const dispatch = useAppDispatch();
 
 
     const startSetInitialState = async () => {
-        handleAppStatus('loading')
+        handleSetLoadingStatus()
         setTimeout(async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/v1/parcelas');
                 const data = await response.json() as Parcela[];
                 dispatch(setInitialState(data));
-                handleAppStatus('succeded')
-            } catch (error) {
-                handleAppStatus('failed')
+                handleSetSuccededStatus();
+            } catch (error: any) {
+                handleSetFailedStatus(error.message)
                 console.error(error);
             } finally {
-                handleAppStatus('idle')
+                handleSetIdleStatus()
             }
         }, 5000)
 
