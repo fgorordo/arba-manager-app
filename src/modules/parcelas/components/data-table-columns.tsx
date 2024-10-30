@@ -1,7 +1,14 @@
 import { Parcela } from "@/core/models"
 import { ColumnDef } from "@tanstack/react-table"
 
-export const DataTableColumns: ColumnDef<Parcela>[] = [
+export const parcelasColumns: ColumnDef<Parcela>[] = [
+    {
+        accessorKey: 'id',
+        header: 'ID',
+        cell: ({row}) => {
+            return <div className='text-ellipsis w-10 overflow-hidden'>{row.getValue('id')}</div>
+        }
+    },
     {
         accessorKey: "nombre",
         header: "Nombre",

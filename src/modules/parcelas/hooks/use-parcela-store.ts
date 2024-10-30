@@ -1,11 +1,11 @@
 import { Parcela } from '@/core/models';
 import { useAppDispatch, useAppSelector, useAppStore } from '@/common/hooks'
-import { setInitialState } from '@/core/store/features';
+import { setActiveParcela, setInitialState } from '@/core/store/features';
 
 
 export const useParcelaStore = () => {
     const { handleSetFailedStatus, handleSetIdleStatus,handleSetLoadingStatus, handleSetSuccededStatus } = useAppStore();
-    const parcelas = useAppSelector(state => state.parcelas)
+    const { parcelas, activeParcela } = useAppSelector(state => state.parcelas)
     const dispatch = useAppDispatch();
 
 
@@ -24,11 +24,16 @@ export const useParcelaStore = () => {
                 handleSetIdleStatus()
             }
         }, 5000)
+    }
 
+    const handleSetActiveParcela = (id: number) => {
+        dispatch(setActiveParcela(id))
     }
 
     return {
         parcelas,
-        startSetInitialState
+        activeParcela,
+        startSetInitialState,
+        handleSetActiveParcela
     }
 }

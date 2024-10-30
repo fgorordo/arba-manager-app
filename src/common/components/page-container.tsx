@@ -9,7 +9,7 @@ interface Props extends PropsWithChildren {
 
 export const PageContainer: React.FC<Props> = ({ children, title, description, className }) => {
   return (
-    <div className='flex flex-col p-6 h-dvh'>
+    <div className='flex flex-col p-6'>
       <Card className='h-full'>
         <CardHeader>
           <CardTitle className='text-2xl'>{title}</CardTitle>

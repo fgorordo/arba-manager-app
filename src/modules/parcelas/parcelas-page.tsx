@@ -1,16 +1,20 @@
-import { DataTable, PageContainer } from '@/common/components';
 import { useParcelaStore } from './hooks';
-import { DataTableColumns, ViewDetailsForm } from './components';
+import { Gridx3Container } from '@/common/layout/tiple-grid-layout';
+import { Gridx3MainCard, Gridx3SideCard, Gridx3BottomCard } from '../../common/layout/tiple-grid-layout';
+import { DataTable } from '@/common/components';
+import { parcelasColumns } from './components';
 
 export const ParcelasPage = () => {
   const { parcelas } = useParcelaStore()
 
   return (
-    <PageContainer title='Parcelas y Lotes'>
-      <div className='grid grid-cols-4 gap-2'>
-        <DataTable className='col-span-3' columns={DataTableColumns} data={parcelas} filterCriteria='partida' filterCriteriaPlaceholder='número de partida.'/>
-        <ViewDetailsForm />
-      </div>
-    </PageContainer>
+    <Gridx3Container>
+      <Gridx3MainCard>
+        <DataTable columns={parcelasColumns} data={parcelas}/>
+      </Gridx3MainCard>
+      <Gridx3SideCard title='Información general'>
+      </Gridx3SideCard>
+      <Gridx3BottomCard title='Información del inmueble'></Gridx3BottomCard>
+    </Gridx3Container>
   )
 }

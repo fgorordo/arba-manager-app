@@ -19,33 +19,29 @@ export const DashboardLayout: React.FC = () => {
     }, [])
 
     return (
-        <div className='antialised flex h-screen'>
-            <SidebarProvider>
-                <div className='grid grid-cols-[auto,1fr] w-full'>
-                    <DashboardSidebar />
-                    <main className='flex flex-col h-screen overflow-auto'>
-                        <SidebarTrigger className='md:hidden' />
-                        {
-                            status === 'loading'
-                                ? (
-                                    <div className='flex items-center justify-center h-full w-full'>
-                                        <ProgressBar
-                                            visible={true}
-                                            height="80"
-                                            width={200}
-                                            barColor='#6b7280'
-                                            borderColor='#1f2937'
-                                            ariaLabel="progress-bar-loading"
-                                            wrapperClass=""
-                                        />
-                                    </div>
-                                )
-                                : <Outlet />
-                        }
-                        <Toaster />
-                    </main>
-                </div>
-            </SidebarProvider>
-        </div>
+        <SidebarProvider>
+            <DashboardSidebar />
+            <main className='flex flex-col w-full overflow-auto'>
+                <SidebarTrigger className='md:hidden' />
+                {
+                    status === 'loading'
+                        ? (
+                            <div className='flex items-center justify-center h-full w-full'>
+                                <ProgressBar
+                                    visible={true}
+                                    height="80"
+                                    width={200}
+                                    barColor='#6b7280'
+                                    borderColor='#1f2937'
+                                    ariaLabel="progress-bar-loading"
+                                    wrapperClass=""
+                                />
+                            </div>
+                        )
+                        : <Outlet />
+                }
+                <Toaster />
+            </main>
+        </SidebarProvider>
     );
 }
