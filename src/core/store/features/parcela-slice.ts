@@ -23,8 +23,12 @@ export const parcelaSlice = createSlice({
 
     setActiveParcela: (state, {payload}: PayloadAction<number>) => {
       state.activeParcela = state.parcelas.find(item => item.id === payload)
-    }
+    },
+
+    createParcela: (state, {payload}: PayloadAction<Parcela>) => {
+      state.parcelas = [...state.parcelas, payload];
+    },
   },
 });
 
-export const {setInitialState, setActiveParcela} = parcelaSlice.actions
+export const {setInitialState, setActiveParcela, createParcela} = parcelaSlice.actions
