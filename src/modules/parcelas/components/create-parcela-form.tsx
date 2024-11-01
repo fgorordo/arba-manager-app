@@ -46,6 +46,7 @@ export const CreateParcelaForm: React.FC<Props> = ({ handleDialogOpen }) => {
     });
 
     const onSubmit = async (values: z.infer<typeof createParcelaFormSchema>) => {
+        console.log(values);
         await startCreateParcela(values);
         handleDialogOpen(false)
     }

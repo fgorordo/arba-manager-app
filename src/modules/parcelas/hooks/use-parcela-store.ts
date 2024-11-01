@@ -43,6 +43,7 @@ export const useParcelaStore = () => {
                     body: JSON.stringify(dto)
                 });
                 const data = await response.json() as Parcela;
+                console.log(data)
                 dispatch(createParcela(data));
                 handleSetSuccededStatus();
             } catch (error: any) {
